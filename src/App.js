@@ -12,7 +12,18 @@ import navBar from "./Components/navBar"
 import newPost from "./Components/newPost"
 import show from "./Components/show"
 
+const API_BASE = apiURL()
+
 function App() {
+  const [transactions,setTransactions] = useState([])
+  const addTransaction = (newTransaction) => {
+    axios.post(`${API_BASE}/transactions/new`, newTransaction).then((response)=>{
+      axios.get(`${API_BASE}/transactions/`).then((response)=>{
+        setTransactions(response.data)
+      })
+    })
+
+  }
   return (
     <div className="App">
     
