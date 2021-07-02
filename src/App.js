@@ -1,18 +1,19 @@
 
 import './App.css';
-import rseact from "react"
+import React, {useEffect, useState} from "react"
 import axios from "axios"
 import { apiUrl } from "./Util/apiUrl"
 import { Switch, Route } from "react-router-dom"
-import error from "./Components/error"
-import edit from "./Components/edit"
-import home from "./Components/home"
-import index from "./Components/index"
-import navBar from "./Components/navBar"
-import newPost from "./Components/newPost"
-import show from "./Components/show"
+import Error from "./Components/Error"
+import Edit from "./Components/Edit"
+import Home from "./Components/Home"
+import Index from "./Components/Index"
+import NavBar from "./Components/NavBar"
+import Post from "./Components/Post"
+import Show from "./Components/Show"
 
-const API_BASE = apiURL()
+
+const API_BASE = apiUrl()
 
 function App() {
   const [transactions, setTransactions] = useState([])
@@ -55,6 +56,27 @@ function App() {
 
   return (
     <div className="App">
+       <NavBar/>
+       <Switch>
+         <Route exact path= "/"> 
+         <Home/>
+         </Route>
+         <Route exact path="/transactions">
+           <Index transactions={transactions}/>
+           </Route>
+           <Route path="transactions/new">
+             <Post add={addTransaction}/>
+           </Route>
+         <Route exact path="transactions/:index">
+           <Show transactions={transactions} delete={deleteTransaction}/>
+         </Route>
+         <Route path="transactions/:index/edit">
+           <Edit  update={updateTransaction}/>
+         </Route>
+         <Route path="*">
+           <Error/>
+         </Route>
+       </Switch>
 
     </div>
   );
