@@ -56,7 +56,8 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar />
+    <NavBar />
+      <div className="body">
       <Switch>
         <Route exact path="/">
           <Home />
@@ -77,7 +78,7 @@ function App() {
           <Error />
         </Route>
       </Switch>
-
+      </div>
     </div>
   );
 }

@@ -1,0 +1,14 @@
+.edit{
+    width: 300px;
+    display:flex;
+    flex-direction: column;
+   
+
+  
+  
+}
+
+.editForm {
+    display: flex;
+    flex-direction: column;
+}

@@ -2,37 +2,40 @@ import React from 'react'
 import { Link } from "react-router-dom"
 
 
-export default function index(props) {
+export default function Index(props) {
 
     const { transactions } = props
     const listTransactions = transactions.map((elem, i) => {
         return (
             <>
                 <li>
-                    <span>{elem.date}</span>
-                    <Link to={`/transactions/${i}`}> <span>{elem.name}</span></Link>
-                    <span>{elem.amount}</span>
+                    <span>Date: {elem.date} </span>
+                    <Link to={`/transactions/${i}`}> 
+                    <span>Name: {elem.name} </span>
+                    </Link>
+                    <span>Amount: {elem.amount}</span>
                 </li>
-                <hr/>
+                
+                <hr />
             </>
         )
     })
 
-let sum = 0
-transactions.forEach((elem) => {
-    return sum += elem.amount
-})
+    let sum = 0
+    transactions.forEach((elem) => {
+        return (sum += elem.amount)
+    })
 
 
 
     return (
         <div>
-<h1>
-    Bank Account Total: {sum}
-</h1>
-<ul>
-    {listTransactions}
-</ul>
+            <h1>
+                Bank Account Total: {sum}
+            </h1>
+            <ul>
+                {listTransactions}
+            </ul>
         </div>
     )
 }

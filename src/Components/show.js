@@ -2,47 +2,50 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import { apiUrl } from "../Util/apiUrl";
-
+import "./Show.css"
 
 const API_BASE = apiUrl()
 
 
 export default function Show(props) {
-const [transaction, setTransaction] = useState([])
-  let { index } = useParams()
-  let history = useHistory()
-  let { deleteTransaction} = props
+    const [transaction, setTransaction] = useState([])
+    let { index } = useParams()
+    let history = useHistory()
+    let { deleteTransaction } = props
 
-  useEffect(() => {
-    axios.get(`${API_BASE}/transactions/${index}`).then((response) => {
-        setTransaction(response.data)
-    }).catch((error) => { history.push("/404") })
-}, [index, history])
+    useEffect(() => {
+        axios.get(`${API_BASE}/transactions/${index}`).then((response) => {
+            setTransaction(response.data)
+        }).catch((error) => { history.push("/404") })
+    }, [index, history])
 
-const handleDelete = () => {
-    deleteTransaction(index)
-    history.push("/transactions")
+    const handleDelete = () => {
+        deleteTransaction(index)
+        history.push("/transactions")
 
-}
+    }
     return (
-        <div>
+        <div className="show">
             <h1>
                 Transaction Details
             </h1>
             <ul>
-                <li>
-                    <span>{transaction.date}</span>
-                    <span>{transaction.amount}</span>
-                    <span>{transaction.name}</span>
+                <li className="list">
+                    <span>Date: {transaction.date} </span>
+                    <span>Amount: {transaction.amount} </span>
+                    <span>Name: {transaction.name} </span>
                 </li>
-                <hr/>
+                <hr />
             </ul>
-            <button onClick={handleDelete}>Delete</button>
-            <Link to={`/transactions/${index}/edit`}>       <button>Edit</button>
-            </Link>
-            <Link to="/transactions">
-            <button>Back</button>
-            </Link>
+            <div className="button">
+                <button onClick={handleDelete}>Delete</button>
+                <Link to={`/transactions/${index}/edit`}>
+                    <button>Edit</button>
+                </Link>
+                <Link to="/transactions">
+                    <button>Back</button>
+                </Link>
+            </div>
         </div>
     )
 }

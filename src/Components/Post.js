@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import {useHistory } from 'react-router-dom'
+import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 
 export default function Post(props) {
     const [transaction, setTransaction] = useState({
@@ -9,8 +9,8 @@ export default function Post(props) {
         from: "",
     })
 
-    const {add } = props
-    
+    const { add } = props
+
     let history = useHistory()
 
     const textChange = (e) => {
@@ -23,9 +23,8 @@ export default function Post(props) {
 
     const numChange = (e) => {
         setTransaction({
-            ...transaction({
-                amount: e.target.value,
-            })
+            ...transaction,
+            amount: e.target.value,
         })
     }
 
@@ -36,13 +35,13 @@ export default function Post(props) {
 
     }
 
-    
+
 
 
     return (
         <div>
             <h1>
-               Add New Transaction
+                Add New Transaction
             </h1>
             <form onSubmit={handleSubmit} >
                 <label htmlFor="Date">Date:</label>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import axios from "axios"
 import { apiUrl } from "../Util/apiUrl"
-
+import "./Edit.css"
 
 
 const API_BASE = apiUrl()
@@ -20,19 +20,17 @@ export default function Edit(props) {
     let history = useHistory()
 
     const textChange = (e) => {
-        setTransaction({
-            ...transaction,
+        setTransaction((state) => ({
+            ...state,
             [e.target.id]: e.target.value,
-        })
-
+        }));
     }
 
     const numChange = (e) => {
-        setTransaction({
-            ...transaction,
-                amount: e.target.value,
-            
-        })
+        setTransaction((state) => ({
+            ...state,
+            amount: e.target.value,
+        }));
     }
 
     const handleSubmit = (e) => {
@@ -52,11 +50,11 @@ export default function Edit(props) {
 
 
     return (
-        <div>
+        <div className="edit">
             <h1>
                 Edit A Budget Transaction
             </h1>
-            <form onSubmit={handleSubmit} >
+            <form className="editForm" onSubmit={handleSubmit} >
                 <label htmlFor="Date">Date:</label>
                 <input type="text" placeholder="Date" id="date" value={transaction.date} onChange={textChange} required />
                 <label htmlFor="Name" >Name:</label>
