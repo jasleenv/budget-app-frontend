@@ -20,17 +20,18 @@ export default function Edit(props) {
     let history = useHistory()
 
     const textChange = (e) => {
-        setTransaction((state) => ({
-            ...state,
+        setTransaction({
+            ...transaction,
             [e.target.id]: e.target.value,
-        }));
+        })
+
     }
 
     const numChange = (e) => {
-        setTransaction((state) => ({
-            ...state,
+        setTransaction({
+            ...transaction,
             amount: e.target.value,
-        }));
+        })
     }
 
     const handleSubmit = (e) => {

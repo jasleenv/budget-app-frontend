@@ -5,7 +5,7 @@ export default function Post(props) {
     const [transaction, setTransaction] = useState({
         date: "",
         name: "",
-        amount: "",
+        amount: 0,
         from: "",
     })
 
@@ -22,9 +22,10 @@ export default function Post(props) {
     }
 
     const numChange = (e) => {
+        const amount = parseInt(e.target.value)
         setTransaction({
             ...transaction,
-            amount: e.target.value,
+            amount: amount,
         })
     }
 

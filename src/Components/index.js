@@ -23,7 +23,7 @@ export default function Index(props) {
 
     let sum = 0
     transactions.forEach((elem) => {
-        return (sum += elem.amount)
+        return (sum += parseInt(elem.amount))
     })
 
 
